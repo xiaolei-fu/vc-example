@@ -9,7 +9,6 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
- *
  * @author xiaolei.fu
  * @since 2021-04-10 19:47
  */
@@ -17,11 +16,24 @@ import java.util.Date;
 public class RequestModel {
     private String name;
     private Integer age;
-    // request 格式
+    /**
+     * <h2>GET</h2>
+     * 默认: Sat，12 Aug 1995 13:30:00 GMT
+     * <p>
+     * request: @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+     * </p>
+     * <p>
+     * response: @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+     * </p>
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    // response 格式
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
     private LocalDateTime local;
+    /**
+     * 必须带时区标记
+     */
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private ZonedDateTime zoned;
+    private RequestModel child;
 }

@@ -3,10 +3,7 @@ package vc.example.spring.boot.web.simple.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import vc.example.spring.boot.web.simple.model.RequestModel;
 
 import java.beans.PropertyEditor;
@@ -20,6 +17,7 @@ import java.util.Optional;
  */
 @Slf4j
 @RestController
+@RestControllerAdvice(assignableTypes = DateParamRestController.class)
 public class DateParamRestController {
 
     @InitBinder
@@ -47,8 +45,14 @@ public class DateParamRestController {
 
     }
 
-    @RequestMapping({"", "/"})
+    @RequestMapping({"/date"})
     public RequestModel get(RequestModel model1, @RequestBody(required = false) RequestModel model2) {
         return Optional.ofNullable(model1).orElse(model2);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String exHandler(Exception e) {
+        log.error(e.getMessage(), e);
+        return e.getMessage();
     }
 }

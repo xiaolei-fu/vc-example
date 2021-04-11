@@ -1,0 +1,16 @@
+GET http://localhost:8080/date?name=name&age=12&date=1618055591010
+
+###
+
+GET http://localhost:8080/date?name=name&age=12&date=2021-04-10 22:22:33
+
+###
+
+GET http://localhost:8080/date?name=name&age=12&child.date=2021-04-10 22:22:33
+
+### local
+GET http://localhost:8080/date?local=2021-04-10 22:22:33
+
+
+### local
+GET http://localhost:8080/date?zoned=2021-04-10T22%3A22%3A33%2B08:00
